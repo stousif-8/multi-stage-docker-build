@@ -1,0 +1,18 @@
+FROM ubuntu:latest
+
+LABEL "project"="clean_work"
+LABEL "author"="syed"
+
+RUN apt update
+RUN apt install apache2 -y
+
+ENV DEBIAN_FRONTEND=non-interactive
+
+WORKDIR /var/www/html/
+
+ADD 2133_moso_interior/ /var/www/html/
+
+EXPOSE 80
+
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+
